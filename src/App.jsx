@@ -1,11 +1,21 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 
-function App() {
+import ProviderHook from './services/Provider';
+import store from './redux/store';
+import Dashboard from './pages/Dashboard';
+
+export default function App() {
   return (
-    <div className="App">
-      <p>hello my friend</p>
-    </div>
+    <Provider store={store}>
+      <ProviderHook>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+        </BrowserRouter>
+      </ProviderHook>
+    </Provider>
   );
 }
-
-export default App;
