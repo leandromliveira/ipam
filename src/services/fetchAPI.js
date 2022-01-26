@@ -1,5 +1,5 @@
 export async function getStates() {
-  const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?view=nivelado');
+  const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome');
   const json = await response.json();
   return json;
 }
