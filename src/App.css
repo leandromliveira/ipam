@@ -1,0 +1,38 @@
+.Container {
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid lightblue;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.district-list {
+  overflow-y: scroll;
+  max-height: 100px;
+}
+
+.district {
+  margin-left: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  width: 250px;
+}
+
+form label {
+  margin-bottom: 20px;
+}
+
+select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 8px 0;
+  padding: 12px 20px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+}

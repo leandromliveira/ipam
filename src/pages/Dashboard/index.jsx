@@ -48,8 +48,7 @@ export default function Dashboard() {
   }, [cityId]);
 
   return (
-    <div>
-
+    <div className="Container">
       <form>
         <label htmlFor="state">
           Estado:
@@ -70,7 +69,7 @@ export default function Dashboard() {
           </select>
         </label>
       </form>
-      <div>
+      <div className="region-details">
         {districts[0] && (
           <>
             <p>
@@ -93,16 +92,23 @@ export default function Dashboard() {
               {' '}
               {districts[0].municipio.microrregiao.mesorregiao.UF.regiao.nome}
             </p>
-            <p>Distritos:</p>
           </>
         )}
-        {districts.map((district) => (
-          <div key={district.id}>
-            <p>
-              {district.nome}
-            </p>
-          </div>
-        ))}
+      </div>
+      <div>
+        {districts[0] && (
+          <>
+            <p>Distritos:</p>
+            <div className="district-list">
+              {districts.map((district) => (
+                <p key={district.id} className="district">
+                  {district.nome}
+                </p>
+              ))}
+            </div>
+          </>
+
+        )}
       </div>
     </div>
   );
