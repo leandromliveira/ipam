@@ -20,8 +20,8 @@ export default function Dashboard() {
 
   useEffect(async () => {
     const response = await getStates();
+    response.unshift({ id: '', nome: 'selecione' });
     dispatch(actionStates(response));
-    setStateId(response[0].id);
   }, []);
 
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function Dashboard() {
 
   useEffect(async () => {
     const response = await getCity(stateId);
+    if (response.length > 0) { response.unshift({ id: '', nome: 'selecione' }); }
     dispatch(actionCities(response));
-    setCityId(response[0].id);
   }, [stateId]);
 
   useEffect(async () => {
@@ -71,32 +71,35 @@ export default function Dashboard() {
         </label>
       </form>
       <div>
-        {districts.map((district) => (
-          <div key={district.id}>
-            <p>
-              distrito:
-              {' '}
-              {district.nome}
-            </p>
+        {districts[0] && (
+          <>
             <p>
               microrregião:
               {' '}
-              {district.municipio.microrregiao.nome}
+              {districts[0].municipio.microrregiao.nome}
             </p>
             <p>
               mesorregião:
               {' '}
-              {district.municipio.microrregiao.mesorregiao.nome}
+              {districts[0].municipio.microrregiao.mesorregiao.nome}
             </p>
             <p>
               UF:
               {' '}
-              {district.municipio.microrregiao.mesorregiao.UF.sigla}
+              {districts[0].municipio.microrregiao.mesorregiao.UF.sigla}
             </p>
             <p>
               região:
               {' '}
-              {district.municipio.microrregiao.mesorregiao.UF.regiao.nome}
+              {districts[0].municipio.microrregiao.mesorregiao.UF.regiao.nome}
+            </p>
+            <p>Distritos:</p>
+          </>
+        )}
+        {districts.map((district) => (
+          <div key={district.id}>
+            <p>
+              {district.nome}
             </p>
           </div>
         ))}
