@@ -41,6 +41,7 @@ export default function Dashboard() {
     const response = await getCity(stateId);
     if (response.length > 0) { response.unshift({ id: '', nome: 'selecione' }); }
     dispatch(actionCities(response));
+    setCityId('');
   }, [stateId]);
 
   useEffect(async () => {
@@ -49,8 +50,13 @@ export default function Dashboard() {
   }, [cityId]);
 
   return (
-    <div>
-      <div className="Container">
+    <div className="container">
+      <p>Selecione um estado para liberar o menu de municípios e marcar no mapa.</p>
+      <p>
+        Selecione o município para ver informações de região, Unidade Federativa, mesorregião,
+        microrregião e uma lista com os distritos do município
+      </p>
+      <div className="dataContainer">
         <form>
           <label htmlFor="state">
             Estado:
@@ -75,14 +81,9 @@ export default function Dashboard() {
           {districts[0] && (
           <>
             <p>
-              microrregião:
+              região:
               {' '}
-              {districts[0].municipio.microrregiao.nome}
-            </p>
-            <p>
-              mesorregião:
-              {' '}
-              {districts[0].municipio.microrregiao.mesorregiao.nome}
+              {districts[0].municipio.microrregiao.mesorregiao.UF.regiao.nome}
             </p>
             <p>
               UF:
@@ -90,9 +91,14 @@ export default function Dashboard() {
               {districts[0].municipio.microrregiao.mesorregiao.UF.sigla}
             </p>
             <p>
-              região:
+              mesorregião:
               {' '}
-              {districts[0].municipio.microrregiao.mesorregiao.UF.regiao.nome}
+              {districts[0].municipio.microrregiao.mesorregiao.nome}
+            </p>
+            <p>
+              microrregião:
+              {' '}
+              {districts[0].municipio.microrregiao.nome}
             </p>
           </>
           )}

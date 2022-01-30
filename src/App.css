@@ -26,12 +26,17 @@ body {
   justify-content: center;
 }
 
-.Container {
+.container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.dataContainer {
   display: flex;
   justify-content: space-around;
-  border: 3px solid lightblue;
-  background-color: #f2f2f2;
-  border-radius: 10px;
+  width: 100%;
+  
   align-items: center;
 }
 
