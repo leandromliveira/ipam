@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionCities, actionDistricts, actionStates } from '../../redux/actions';
 import Context from '../../services/Context';
 import { getCity, getDistrict, getStates } from '../../services/fetchAPI';
+import images from '../../assets/images';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -48,29 +49,30 @@ export default function Dashboard() {
   }, [cityId]);
 
   return (
-    <div className="Container">
-      <form>
-        <label htmlFor="state">
-          Estado:
-          {' '}
-          <select id="state" onChange={(event) => setStateId(event.target.value)}>
-            {states.map((state) => (
-              <option key={state.id} value={state.id}>{state.nome}</option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="city">
-          Município:
-          {' '}
-          <select id="city" onChange={(event) => setCityId(event.target.value)}>
-            {cities.map((city) => (
-              <option key={city.id} value={city.id}>{city.nome}</option>
-            ))}
-          </select>
-        </label>
-      </form>
-      <div className="region-details">
-        {districts[0] && (
+    <div>
+      <div className="Container">
+        <form>
+          <label htmlFor="state">
+            Estado:
+            {' '}
+            <select id="state" onChange={(event) => setStateId(event.target.value)}>
+              {states.map((state) => (
+                <option key={state.id} value={state.id}>{state.nome}</option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="city">
+            Município:
+            {' '}
+            <select id="city" onChange={(event) => setCityId(event.target.value)}>
+              {cities.map((city) => (
+                <option key={city.id} value={city.id}>{city.nome}</option>
+              ))}
+            </select>
+          </label>
+        </form>
+        <div className="region-details">
+          {districts[0] && (
           <>
             <p>
               microrregião:
@@ -93,10 +95,10 @@ export default function Dashboard() {
               {districts[0].municipio.microrregiao.mesorregiao.UF.regiao.nome}
             </p>
           </>
-        )}
-      </div>
-      <div>
-        {districts[0] && (
+          )}
+        </div>
+        <div>
+          {districts[0] && (
           <>
             <p>Distritos:</p>
             <div className="district-list">
@@ -108,8 +110,12 @@ export default function Dashboard() {
             </div>
           </>
 
-        )}
+          )}
+        </div>
       </div>
+      {stateId ? <img src={images[stateId]} alt="mapa do brasil" />
+        : <img src={images.brasil} alt="mapa do brasil" />}
+
     </div>
   );
 }
