@@ -1,3 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.headerContainer {
+  background-color: #00a651;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.headerContainer  img{
+ height: 60px;
+}
+
+.footerContainer {
+  background-color: #00a651;
+  color: white;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Container {
   display: flex;
   justify-content: space-around;
